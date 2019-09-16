@@ -12,14 +12,14 @@ A:Yes
 A:No
 	Q(1.2):GOTO:2
 Q(2): Has the accused retained counsel on his/her own?
-A:Yes 
+A:Yes
 	Q(2.1):GOTO:1.1
 A:No
 	Q(2.2):GOTO:3
 Q(3): Is the accused a current recipient of a state or federally funded public assistance program for the indigent?
 A:Yes
 	Q(3.1):GOTO:4
-	
+
 A:No
 	Q(3.2):GOTO:5
 
@@ -33,35 +33,33 @@ A: No
 Q(5): Are the accused's available funds less than or equal to 125% of the federal poverty income guidelines prescribed for the accused's size of household by the Federal Department of Health and Human Services?
 A:Yes
 	Q(5.1):GOTO:4.2
-	
+
 A:No
 	Q(5.2):GOTO:6
 
 A:I need assistance to calculate the answer.
-	Q(5.3):GOTO:7 
-	
+	Q(5.3):GOTO:7
+
 
 Q(6): Has the court determined that there is an exceptional circumstance where justice requires the court to appoint an attorney to represent the accused?
 A:Yes
 	Q(6.1):GOTO:4.2
 A:No
 	Q(6.2):GOTO:1.1
- 
+
 Q(7): STEP 1. ADD TOGETHER THE ACCUSED'S INCOME AND ASSETS.
 A: Got it. Take me to step 2.
 	Q(7.1):GOTO:8
 A: I don't have the available information to complete this step.
-	Q(7.2): Please obtain the necessary information and then return to this questionnaire. 
+	Q(7.2): Please obtain the necessary information and then return to this questionnaire.
 
 Q(8): STEP 2. SUBTRACT ANY EXCEPTIONAL EXPENSES (Any exceptional expenses of the accused and his family which would, in all probability, prohibit him from being able to secure private counsel. Such items shall include but not be limited to costs for medical care, family support obligations, and child care payments.)
 A: Got it. Take me to step 3.
 	Q(8.1): GOTO:9
 A: I don't have the available information to complete this step.
 	Q(8.2):GOTO:7.2
-Q(9): STEP 3.COMPARE THE REMAINING DIFFERENCE WITH THE FEDERAL POVERTY INCOME GUIDELINES FOR THE ACCUSED'S HOUSEHOLD SIZE 
-A:[https://aspe.hhs.gov/poverty-guidelines] Take me to the guidelines 
+Q(9): STEP 3.COMPARE THE REMAINING DIFFERENCE WITH THE FEDERAL POVERTY INCOME GUIDELINES FOR THE ACCUSED'S HOUSEHOLD SIZE
+A:[https://aspe.hhs.gov/poverty-guidelines] Take me to the guidelines
 	Q(9.1):GOTO:9
 A: Got it. I am now ready to answer the question.
 	Q(9.2):GOTO:5
-
-	
