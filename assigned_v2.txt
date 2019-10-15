@@ -1,0 +1,96 @@
+Title: Virginia Indigency Calculator
+Author: Jessica Sofio
+Before:<link rel="stylesheet" type="text/css" href="https://suffolklitlab.org/howto/qna/style/style.css">
+<div id="icon" style="background-size: 110px 99px;background-image: url('https://suffolklitlab.org/howto/qna/images/maxheadroom.gif');"></div>
+<h2 style="text-align:center;">Virginia Indigency Calculator</h2>
+<p><b>This is a <a href="http://www.codingthelaw.org/">class project</a>. You should not rely on it as a source of legal information. It is likely incomplete.</b></p>
+<p>Answer the following questions to see if someone qualifies for appointment of counsel.</p>
+<p>Answer the following questions to see if you qualify for an appointment of counsel or fee waiver.</p>
+After: 
+<script>
+function povgl(house,income,percentage){
+	
+	
+		var line = NaN;
+	
+		if (house == 1) {
+			line = 12140;
+		} else if (house == 2) {
+			line = 16460;
+		} else if (house == 3) {
+			line = 20780;
+		} else if (house == 4) {
+			line = 25100;
+		} else if (house == 5) {
+			line = 29420;
+		} else if (house == 6) {
+			line = 33740;
+		} else if (house == 7) {
+			line = 38060;
+		} else if (house == 8) {
+			line = 42380;
+		} else if (house > 8) {
+			line = 42380 + (house-8)*4320;
+		}
+	
+		if (income <= (line*(percentage/100))) {
+			return true;
+		} else {
+			return false;
+		}
+	}	
+</script>	
+
+Q(1):Has the accused waived his/her right to counsel?
+A:Yes
+	Q(1.1):Ineligible
+A:No
+	Q(1.2):GOTO:2
+Q(2): Has the accused retained counsel on his/her own?
+A:Yes
+	Q(2.1):GOTO:1.1
+A:No
+	Q(2.2):GOTO:3
+Q(3): Is the accused a current recipient of a state or federally funded public assistance program for the indigent?
+A:Yes
+	Q(3.1):GOTO:4
+
+A:No
+	Q(3.2):GOTO:house
+
+Q(4): Has the court determined that a more thorough examination  of the accused's financial resources is necessary?
+A:Yes
+	Q(4.1):GOTO:5
+A:No
+	Q(4.2):Eligible
+
+Q(5):Are the accused's available funds less than or equal to 125% of the federal poverty income guidelines prescribed for the accused's size of household by the Federal Department of Health and Human Services?
+A: Calculate
+	Q(5.1): GOTO:house
+		
+Q(house): How many people are in your household?
+X:number
+	Q(house.1): GOTO:income
+
+Q(income): How much income does your household bring in per year after tax dollars and after subtracting exceptional expenses?
+X:number
+	Q(income.1): GOTO:8
+Q(8): Please press calculate to find if you are eligible for court-appointed counsel. 
+
+A[javascript:if (povgl(getvar('house'),getvar('income'),125)){goto ('qual') } else{ goto ('noqual') } ]:Calculate
+
+			
+	
+
+	
+Q(qual): You likely qualify for court-appointed counsel according to the Virginia indigency guidelines.
+A:[https://aspe.hhs.gov/poverty-guidelines] Take me to the guidelines
+
+Q(noqual): You likely do NOT qualify for court-appointed counsel according to the Virginia indigency guidelines.
+A:[https://aspe.hhs.gov/poverty-guidelines] Take me to the guidelines
+
+Q(11): Has the court determined that there is an exceptional circumstance where justice requires the court to appoint an attorney to represent the accused?
+A:Yes
+	Q(11.1):GOTO:4.2
+A:No
+	Q(11.2):GOTO:1.1
